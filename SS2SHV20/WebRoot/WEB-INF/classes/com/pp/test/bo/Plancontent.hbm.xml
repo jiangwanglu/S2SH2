@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                 "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.pp.test.bo.Plancontent" table="Plancontent">
+		<id name="Id" type="java.lang.Integer" >
+			<generator class="increment"/>
+		</id>
+		<property name="unitid" />
+		<property name="units"/>
+		<property name="belong" />
+		<property name="type" />
+		<property name="content" />
+	</class>
+</hibernate-mapping>

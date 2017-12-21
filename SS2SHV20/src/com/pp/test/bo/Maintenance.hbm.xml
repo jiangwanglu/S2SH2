@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                 "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+        
+<hibernate-mapping>
+	<class name="com.pp.test.bo.Maintenance" table="Maintenance">
+		<id name="id" column="java.lang.Integer" >
+			<generator class="native"/>
+		</id>
+		<property name="unitid" />
+		<property name="executiondata" />
+		<property name="dateofexecution" />
+		<property name="enddate" />
+		<property name="whether" />
+		<property name="implementation" />
+		<property name="maintenancecategory" />
+		<property name="content" />
+		<property name="degree" />
+		<property name="executor" />
+	</class>
+</hibernate-mapping>

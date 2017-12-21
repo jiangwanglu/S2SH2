@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                 "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+        
+<hibernate-mapping>
+
+	<class name="com.pp.test.bo.Source" table="equipment">
+		<id name="Id" column="Id" >
+			<generator class="native" />
+		</id>
+		
+		<property name="unitId"/>
+		<property name="sysId"/>
+		<property name="name"/>
+		<property name="project"/>
+		<property name="model"/>
+		<property name="belong"/>
+		<property name="dateOfManufact"/>
+		<property name="param"/>
+		<property name="idOfManufact"/>
+		<property name="manufactor"/>
+		<property name="dateOfUse"/>
+		<property name="usefulLife"/>
+		<property name="relation"/>
+		<property name="runState"/>
+		<property name="personLiable"/>
+		<property name="local"/>
+		<property name="maintenanceRecord"/>
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                 "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+        
+<hibernate-mapping>
+
+	<class name="com.pp.test.bo.Dianlang" table="datenh">
+	
+		<id name="date" column="date" >
+			<generator class="native" />
+		</id>
+		<property name="nh" />
+		<property name="nhair" />
+		<property name="nh1" />
+		<property name="nh2" />
+		<property name="nh3" />
+		<property name="nh4" />
+		<property name="nh5" />
+		
+	</class>
+</hibernate-mapping>
