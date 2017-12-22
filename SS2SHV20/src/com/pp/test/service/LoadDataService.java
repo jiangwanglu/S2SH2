@@ -107,7 +107,7 @@ public interface LoadDataService {
 	Maintenance QueryMaintain(String date,String month);
 	int judge(String a,String category);
 	void queryMaintenanceUpdata(String date); 
-	void queryMaintenanceUpdata1(String date);
+	void queryMaintenanceUpdata1(String date,String date1);
 	PatrolRecord queryPatrolRecord(String unitId,String startdate,String index);
 	void addRecord(PatrolRecord patrol);
 	void deleteMaintenance(String name,String id);

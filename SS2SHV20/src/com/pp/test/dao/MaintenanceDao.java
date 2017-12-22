@@ -22,7 +22,7 @@ public interface MaintenanceDao {
 	
 	void queryMaintenanceUpdate(String date);
 	
-	void queryMaintenanceUpdate1(String date);
+	void queryMaintenanceUpdate1(String date,String date1);
 	
 	void deleteMaintenance(String name,String id);
 	

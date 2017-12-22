@@ -1,5 +1,6 @@
 package com.pp.test.task;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,14 +24,14 @@ public class AddMaintain {
 		this.loadDataService = loadDataService;
 	}
 	
-	@Scheduled(cron="0 20 23 * * ? ")
+	@Scheduled(cron="0/5 * * * * ? ")
 	public void addmain() throws Exception{
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date today = new Date(); 
 		String date = df.format(today);
 		Maintenance addmain = new Maintenance();
 		List<MaintenancePlan> plan = this.loadDataService.Display();
-		for(MaintenancePlan l : plan){
+/*		for(MaintenancePlan l : plan){
 			List<Maintenance> li = this.loadDataService.queryzhiding(l.getUnitid(),l.getExecutioncycle());
 			for(Maintenance main : li){
 				if(main.getDegree().equals("月度")){
@@ -77,21 +78,34 @@ public class AddMaintain {
 				    }
 				}
 			}
-		}
+		}*/
 		
-
-/*	//判断是否过期
+	//判断是否过期
 		Calendar day = Calendar.getInstance();
 		day.setTime(today);  
-		day.add(Calendar.DAY_OF_MONTH, +7);
+		day.add(Calendar.DAY_OF_MONTH, -14);
 		Date tomorrow = day.getTime();
-		this.loadDataService.queryMaintenanceUpdata1(df.format(tomorrow));
+		this.loadDataService.queryMaintenanceUpdata1(df.format(tomorrow),date);
 		
 		//判断是否待通知
 		Calendar day7 = Calendar.getInstance();
 		day7.setTime(today);  
 		day7.add(Calendar.DAY_OF_MONTH, -7);
 		tomorrow = day.getTime();
-		this.loadDataService.queryMaintenanceUpdata(df.format(tomorrow));*/
+		this.loadDataService.queryMaintenanceUpdata(df.format(tomorrow));
+	}
+	public static void main(String[] args) throws ParseException {
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+	        //跨年的情况会出现问题哦
+	        //如果时间为：2016-03-18 11:59:59 和 2016-03-19 00:00:01的话差值为 1
+	        Date fDate=sdf.parse("2016-01-02");
+	        Date oDate=sdf.parse("2016-01-01");
+	        Calendar aCalendar = Calendar.getInstance();
+	        aCalendar.setTime(fDate);
+	        int day1 = aCalendar.get(Calendar.DAY_OF_YEAR);
+	        aCalendar.setTime(oDate);
+	        int day2 = aCalendar.get(Calendar.DAY_OF_YEAR);
+	        int days=day2-day1;
+	        System.out.print(days);
 	}
 }

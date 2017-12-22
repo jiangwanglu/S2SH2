@@ -816,8 +816,8 @@ public class LoadDataServiceImpl extends BaseServiceImpl implements LoadDataServ
 		public void queryMaintenanceUpdata(String date) {
 			this.maintenancedao.queryMaintenanceUpdate(date);
 		}
-		public void queryMaintenanceUpdata1(String date){
-			this.maintenancedao.queryMaintenanceUpdate1(date);
+		public void queryMaintenanceUpdata1(String date,String date1){
+			this.maintenancedao.queryMaintenanceUpdate1(date,date1);
 		}
 
 		public PatrolRecordDao getPatrolrecorddao() {

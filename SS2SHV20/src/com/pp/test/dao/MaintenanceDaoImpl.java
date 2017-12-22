@@ -1,6 +1,9 @@
 package com.pp.test.dao;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import com.myapp.common.dao.BaseDaoImpl;
@@ -68,31 +71,35 @@ public class MaintenanceDaoImpl extends BaseDaoImpl<Maintenance,Integer> impleme
 	}
 
 	public void queryMaintenanceUpdate(String date) {
-		String ind = "0";
-		String sql = "select * from maintenance where executiondata = ? and whether = ?";
+		String ind = "3";
+		String sql = "select * from maintenance where whether = ?";
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		Date da = new Date();
+        Calendar aCalendar = Calendar.getInstance();
 		try {
-			List<Maintenance> main = (List<Maintenance>) this.queryForList(sql,new String[]{date,ind},Maintenance.class);
+			List<Maintenance> main = (List<Maintenance>) this.queryForList(sql,new String[]{ind},Maintenance.class);
 			for(Maintenance ma : main){
-				if(ma.getWhether().equals("0")){
-					ma.setWhether("3");
-				}
-				this.save(ma);
+				Date de =sdf.parse(ma.getExecutiondata()); 
+		        aCalendar.setTime(da);
+		        int day1 = aCalendar.get(Calendar.DAY_OF_YEAR);
+		        aCalendar.setTime(de);
+		        int day2 = aCalendar.get(Calendar.DAY_OF_YEAR);
+		        
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void queryMaintenanceUpdate1(String date) {
+	public void queryMaintenanceUpdate1(String date,String date1) {
 		String ind = "0";
-		String sql = "select * from maintenance where executiondata = ? and whether = 0";
+		String sql = "select * from maintenance where executiondata >= ? and executiondata <= ? and whether = ?";
 		try {
-			List<Maintenance> main = (List<Maintenance>) this.queryForList(sql,new String[]{date,ind},Maintenance.class);
+			List<Maintenance> main = (List<Maintenance>) this.queryForList(sql,new String[]{date,date1,ind},Maintenance.class);
 			for(Maintenance ma : main){
-				if(ma.getWhether().equals("0")){
-					ma.setWhether("2");
-				}
-				this.save(ma);
+				ma.setWhether("3");
+				String sql1 = "update maintenance set unitid=?,executiondata=?,dateofexecution=?,enddate=?,whether=?,implementation=?,maintenancecategory=?,content=?,degree=?,executor=? where id = ?";
+				this.executeUpdate(sql1,new String[]{ma.getUnitid(),ma.getExecutiondata(),ma.getDateofexecution(),ma.getEnddate(),ma.getWhether(),ma.getImplementation(),ma.getMaintenancecategory(),ma.getContent(),ma.getDegree(),ma.getExecutor(), Integer.toString(ma.getId())});
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
