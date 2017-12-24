@@ -72,19 +72,13 @@ public class MaintenanceDaoImpl extends BaseDaoImpl<Maintenance,Integer> impleme
 
 	public void queryMaintenanceUpdate(String date) {
 		String ind = "3";
-		String sql = "select * from maintenance where whether = ?";
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		Date da = new Date();
-        Calendar aCalendar = Calendar.getInstance();
+		String sql = "select * from maintenance where executiondata = ? and whether = ?";
 		try {
-			List<Maintenance> main = (List<Maintenance>) this.queryForList(sql,new String[]{ind},Maintenance.class);
+			List<Maintenance> main = (List<Maintenance>) this.queryForList(sql,new String[]{date,ind},Maintenance.class);
 			for(Maintenance ma : main){
-				Date de =sdf.parse(ma.getExecutiondata()); 
-		        aCalendar.setTime(da);
-		        int day1 = aCalendar.get(Calendar.DAY_OF_YEAR);
-		        aCalendar.setTime(de);
-		        int day2 = aCalendar.get(Calendar.DAY_OF_YEAR);
-		        
+		        ma.setWhether("2");
+		        String sql1 = "update maintenance set unitid=?,executiondata=?,dateofexecution=?,enddate=?,whether=?,implementation=?,maintenancecategory=?,content=?,degree=?,executor=? where id = ?";
+		        this.executeUpdate(sql1,new String[]{ma.getUnitid(),ma.getExecutiondata(),ma.getDateofexecution(),ma.getEnddate(),ma.getWhether(),ma.getImplementation(),ma.getMaintenancecategory(),ma.getContent(),ma.getDegree(),ma.getExecutor(), Integer.toString(ma.getId())});
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
