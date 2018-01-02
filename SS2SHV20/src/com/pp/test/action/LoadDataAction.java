@@ -472,4 +472,154 @@ public class LoadDataAction  implements ServletRequestAware{
 			result = JSONArray.fromObject(list).toString();
 			return "load_success";
 		}
+		public void generate() throws Exception{
+			File filename = null;
+			String unitId = null;
+			String url = null;
+			String userName = null;
+			for(int i = 0;i < 5;i++){
+				if(i == 0){
+					filename = new File("D:/Folder/Record/KT/FM-GC-006-001KT.xls");
+					unitId = "DF-KT-KTJF";//空调机房
+					userName = "空调机房";
+					url = "D:/Folder/Record/KT/";
+				}else if(i == 1){
+					filename = new File("D:/Folder/Record/SHBF/FM-GC-006-001SHBF.xls");
+					unitId = "DF-GP-SHBF";//生活泵房
+					userName = "生活泵房";
+					url = "D:/Folder/Record/SHBF/";
+				}else if(i == 2){
+					filename = new File("D:/Folder/Record/WYBF/FM-GC-006-001WYBF.xls");
+					unitId = "DF-RD-WYBF";//稳压泵房
+					userName = "稳压泵房";
+					url = "D:/Folder/Record/WYBF/";
+				}else if(i == 3){
+					filename = new File("D:/Folder/Record/XFBF/FM-GC-006-001XFBF.xls");
+					unitId = "DF-RD-XFBF";//消防泵房
+					userName = "消防泵房";
+					url = "D:/Folder/Record/XFBF/";
+				}else if(i == 4){
+					filename = new File("D:/Folder/Record/XFZX/FM-GC-006-001XFZX.xls");
+					unitId = "DF-RD-XFZX";//消防中心
+					userName = "消防中心";
+					url = "D:/Folder/Record/XFZX/";
+				}
+				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+				String date1 = df.format(new Date());
+				String ng = date1.split(" ")[0].replace("-", "/");
+				// 备份的File对象
+				File target = new File(url+ng.split("/")[0]+"/"+ng.split("/")[1]+"月.xls");
+				if(!target.exists()){
+					File targetDir = new File(System.getProperty("java.io.tmpdir"));
+					FileUtils.copyFile(filename, target);
+					FileUtils.copyFileToDirectory(filename, targetDir);
+				}
+				HSSFWorkbook wb = new HSSFWorkbook(new FileInputStream(target));
+				HSSFSheet sheet=wb.getSheetAt(0);
+				HSSFRow row;
+				HSSFCell cell;
+				int index=0;
+				
+				com.pp.test.bo.PatrolRecord record = this.loadDataService.queryPatrolRecord(unitId,date1.split("-")[0]+"-"+date1.split("-")[1],date1.split("-")[2]);
+				row =sheet.getRow(2);
+				cell =row.getCell((int) 0);
+				
+				cell.setCellValue(userName+"巡检----日期:"+date1.split("-")[0]+"-"+date1.split("-")[1]);
+				
+				if(record != null){
+					if(record.getType().equals("1")){
+						row =sheet.getRow(4+index);
+						cell =row.getCell((int) record.getDay());
+						cell.setCellValue("√");
+						index ++;
+					}else{
+						index ++;
+					}
+					
+					if(record.getType1().equals("1")){
+						row =sheet.getRow(4+index);
+						cell =row.getCell((int) record.getDay());
+						cell.setCellValue("√");
+						index ++;
+					}else{
+						index ++;
+					}
+					
+					if(record.getType2().equals("1")){
+						row =sheet.getRow(4+index);
+						cell =row.getCell((int) record.getDay());
+						cell.setCellValue("√");
+						index ++;
+					}else{
+						index ++;
+					}
+					
+					if(record.getType3().equals("1")){
+						row =sheet.getRow(4+index);
+						cell =row.getCell((int) record.getDay());
+						cell.setCellValue("√");
+						index ++;
+					}else{
+						index ++;
+					}
+					
+					if(record.getType4().equals("1")){
+						row =sheet.getRow(4+index);
+						cell =row.getCell((int) record.getDay());
+						cell.setCellValue("√");
+						index ++;
+					}else{
+						index ++;
+					}
+					
+					if(record.getType5().equals("1")){
+						row =sheet.getRow(4+index);
+						cell =row.getCell((int) record.getDay());
+						cell.setCellValue("√");
+						index ++;
+					}else{
+						index ++;
+					}
+					
+					if(record.getType6().equals("1")){
+						row =sheet.getRow(4+index);
+						cell =row.getCell((int) record.getDay());
+						cell.setCellValue("√");
+						index ++;
+					}else{
+						index ++;
+					}
+					
+					if(record.getType7().equals("1")){
+						row =sheet.getRow(4+index);
+						cell =row.getCell((int) record.getDay());
+						cell.setCellValue("√");
+						index ++;
+					}else{
+						index ++;
+					}
+					
+					if(record.getType8().equals("1")){
+						row =sheet.getRow(4+index);
+						cell =row.getCell((int) record.getDay());
+						cell.setCellValue("√");
+						index ++;
+					}else{
+						index ++;
+					}
+					row =sheet.getRow(13);
+					cell =row.getCell((int) record.getDay());
+					cell.setCellValue(record.getName());
+				}else{
+					
+				}
+				FileOutputStream os = new FileOutputStream(target);
+				wb.write(os);
+				os.close();
+			}
+		}
+	public String Report(){
+		
+		return "load_success";
+	}
 }
