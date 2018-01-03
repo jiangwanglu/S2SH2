@@ -5,6 +5,7 @@ import java.util.List;
 import com.myapp.common.dao.BaseDaoImpl;
 import com.pp.test.bo.Inspection;
 import com.pp.test.bo.Source;
+import com.pp.test.bo.plantype;
 
 public class SourceDaoImpl extends BaseDaoImpl<Source,Integer> implements SourceDao {
 	public List<String> MainName() throws Exception {
@@ -55,5 +56,34 @@ public class SourceDaoImpl extends BaseDaoImpl<Source,Integer> implements Source
 		}
 		return sql;
 
+	}
+
+	public List<String> query2Type(String name) {
+		System.out.println("----"+name);
+		String sql = "select belong from equipment where unitId LIKE '"+name+"%' group by belong";
+		try {
+			return (List<String>) this.queryForList(sql,String.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	
+	public List<plantype> query1name(String name) {
+		String sql = "select * from plantype where unitid LIKE '"+name+"%'";
+		try {
+			return (List<plantype>) this.queryForList(sql,plantype.class);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String queryinspectionvalue(String unitid,String date, String str) {
+		String sql = "select ? from  inspection where unitid = ? and date = ? ";
+		return sql;
+		
 	}
 }

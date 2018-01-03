@@ -21,6 +21,7 @@ import com.pp.test.bo.Plancontent;
 import com.pp.test.bo.RunTimeDate;
 import com.pp.test.bo.Source;
 import com.pp.test.bo.planned;
+import com.pp.test.bo.plantype;
 import com.pp.test.dao.AirRecordDao;
 import com.pp.test.dao.CententDao;
 import com.pp.test.dao.MaintainDao;
@@ -843,5 +844,20 @@ public class LoadDataServiceImpl extends BaseServiceImpl implements LoadDataServ
 		//查询2
 		public List<Maintenance> Query3(String id)throws Exception{
 			return this.maintenancedao.Query3(id);
+		}
+
+		
+		
+		public List<String> query2Type(String name) {
+			return this.sourcedao.query2Type(name);
+		}
+
+		public List<plantype> query1name(String name) {
+			return this.sourcedao.query1name(name);
+		}
+
+		public String queryinspectionvalue(String unitid,String date, String str) {
+			return this.sourcedao.queryinspectionvalue(unitid,date,str);
+			
 		}
 }

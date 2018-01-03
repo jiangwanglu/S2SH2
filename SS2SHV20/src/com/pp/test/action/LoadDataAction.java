@@ -27,6 +27,7 @@ import com.pp.test.bo.MaintenancePlan;
 import com.pp.test.bo.Patrol;
 import com.pp.test.bo.Plancontent;
 import com.pp.test.bo.planned;
+import com.pp.test.bo.plantype;
 import com.pp.test.service.LoadDataService;
 import com.pp.test.bo.RunTimeDate;
 public class LoadDataAction  implements ServletRequestAware{
@@ -595,6 +596,9 @@ public class LoadDataAction  implements ServletRequestAware{
 						cell =row.getCell((int) record.getDay());
 						cell.setCellValue("√");
 						index ++;
+						
+						
+						
 					}else{
 						index ++;
 					}
@@ -619,6 +623,30 @@ public class LoadDataAction  implements ServletRequestAware{
 			}
 		}
 	public String Report(){
+		String name = request.getParameter("name");
+		/*List<String> list = this.loadDataService.query2Type(name);	//根据点击去查询类别(所有的类别)
+		for(String l : list){
+			
+		}*/
+		List<String> li = new ArrayList<String>();
+		List<plantype>list = this.loadDataService.query1name(name);
+		for(plantype lan : list){
+			li.add(lan.getName());
+		}
+		result = JSONArray.fromObject(li).toString();
+		return "load_success";
+	}
+	
+	public String plantype(){
+		String name = request.getParameter("name");
+		String date = request.getParameter("date");
+		List<plantype>list = this.loadDataService.query1name(name);
+		for(plantype p : list){
+			String[]arr = p.getValue().split(",");
+			for(String str : arr){
+				this.loadDataService.queryinspectionvalue(p.getUnitid(),date,str);
+			}
+		}
 		
 		return "load_success";
 	}

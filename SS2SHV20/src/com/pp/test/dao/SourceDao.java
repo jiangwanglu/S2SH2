@@ -3,6 +3,7 @@ package com.pp.test.dao;
 import java.util.List;
 
 import com.pp.test.bo.Source;
+import com.pp.test.bo.plantype;
 
 public interface SourceDao {
 	List<String> MainName() throws Exception;
@@ -14,4 +15,10 @@ public interface SourceDao {
 	String querySourceName(String id);
 	
 	String querysheb(String id);
+	
+	List<String> query2Type(String name);
+	List<plantype> query1name(String name);
+	
+
+	String queryinspectionvalue(String unitid, String date, String str);
 }

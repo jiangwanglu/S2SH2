@@ -12,6 +12,7 @@ import com.pp.test.bo.PatrolRecord;
 import com.pp.test.bo.Plancontent;
 import com.pp.test.bo.Source;
 import com.pp.test.bo.planned;
+import com.pp.test.bo.plantype;
 public interface LoadDataService {
 	
 	
@@ -112,4 +113,11 @@ public interface LoadDataService {
 	void addRecord(PatrolRecord patrol);
 	void deleteMaintenance(String name,String id);
 	List<Maintenance>Query3(String id)throws Exception;
+	
+	
+	//动态生成报表(查询2级分类)
+	List<String> query2Type(String name);
+	//查询
+	List<plantype> query1name(String name);
+	String queryinspectionvalue(String unitid,String date, String str);
 }

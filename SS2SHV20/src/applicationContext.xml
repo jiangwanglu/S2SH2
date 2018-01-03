@@ -68,6 +68,7 @@
 				<value>com/pp/test/bo/Maintenance.hbm.xml</value>
 				<value>com/pp/test/bo/planned.hbm.xml</value>
 				<value>com/pp/test/bo/PatrolRecord.hbm.xml</value>
+				<value>com/pp/test/bo/plantype.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
