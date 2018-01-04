@@ -628,12 +628,8 @@ public class LoadDataAction  implements ServletRequestAware{
 		for(String l : list){
 			
 		}*/
-		List<String> li = new ArrayList<String>();
 		List<plantype>list = this.loadDataService.query1name(name);
-		for(plantype lan : list){
-			li.add(lan.getName());
-		}
-		result = JSONArray.fromObject(li).toString();
+		result = JSONArray.fromObject(list).toString();
 		return "load_success";
 	}
 	
