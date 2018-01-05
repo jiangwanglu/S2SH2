@@ -20,5 +20,6 @@ public interface SourceDao {
 	List<plantype> query1name(String name);
 	
 
-	String queryinspectionvalue(String unitid, String date, String str);
+	List<String> queryinspectionvalue(String unitid, String date, String str);
+	List<String> querydate(String name, String date);
 }

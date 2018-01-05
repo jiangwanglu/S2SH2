@@ -1,5 +1,6 @@
 package com.pp.test.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.myapp.common.dao.BaseDaoImpl;
@@ -80,10 +81,26 @@ public class SourceDaoImpl extends BaseDaoImpl<Source,Integer> implements Source
 		}
 		return null;
 	}
+	//设备名，日期，属性名
+	public List<String> queryinspectionvalue(String unitid,String date, String str) {
+		String sql = "select "+str+" from  inspection where id = ? and b = ? ";
+		try {
+			return (List<String>) this.queryForList(sql,new String[]{unitid,date},String.class);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
-	public String queryinspectionvalue(String unitid,String date, String str) {
-		String sql = "select ? from  inspection where unitid = ? and date = ? ";
-		return sql;
-		
+	public List<String> querydate(String name, String date) {
+		String sql ="select b from  inspection where name = ? and d = ?";
+		try {
+			return (List<String>)this.queryForList(sql, new String[]{name,date},String.class);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

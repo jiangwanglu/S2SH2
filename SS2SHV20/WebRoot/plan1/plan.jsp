@@ -69,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<table style="margin:10px;width:100%;height:100%" border="0" >
 					<thead align="center">
 						<tr id="plantype">
-						
+							
 						</tr>
 					</thead>
 				</table>
@@ -108,12 +108,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				var msg = eval("("+data+")");
 				$("#biaoti").append(""+name+"");
 				for(var i=0;i<msg.length;i++){
+					if(i==0){
+						$("#ke").append("<th>巡检时间</tr>");
+					}
 					$("#plantype").append("<td><strong>"+msg[i].name+"</strong></td>");
 					var ind = msg[i].valuename.split(",");
 					for(var j=0;j<ind.length;j++){
 						$("#ke").append("<th>"+ind[j]+"</tr>");
 					}
+					if(i == (msg.length - 1)){
+						$("#ke").append("<th>巡检人</tr>");
+					}
 				}
+				tabletr(msg);
 			},});
 		}
 	}
@@ -123,17 +130,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		if(star == ""){
 			alert("请先选择日期!!!");
 		}else{
-			for(var i=0;i<data.length;i++){
-				$.ajax({
-					type:"post",
-					url:"plantypedl.do",
-					data:{name:data[i],date:star},
-					dataType:"Json",
-					success:function(da){
-						
+			$.ajax({
+				type:"post",
+				url:"plantypedl.do",
+				data:{name:data[0].name,date:star},
+				dataType:"Json",
+				success:function(da){
+					var arrParse = JSON.parse(da);
+					da = da.split(",");
+					for(var i=0;i<arrParse.length;i++){
+						$("#ke").append("<tr><td>"+arrParse[i]+"</td></tr>");
+						for(var j=0;j<data.length;j++){
+							$.ajax({
+								type:"post",
+								url:"plantype1dl.do",
+								data:{value:data[j].value,name:data[j].unitid,date:arrParse[i]},
+								dataType:"Json",
+								success:function(de){
+									alert(de);
+								}
+							});
+						} 
 					}
-				});
-			}
+				}
+			}); 
 		}
 	}
 </script>

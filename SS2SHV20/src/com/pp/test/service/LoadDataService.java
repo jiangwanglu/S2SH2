@@ -119,5 +119,6 @@ public interface LoadDataService {
 	List<String> query2Type(String name);
 	//查询
 	List<plantype> query1name(String name);
-	String queryinspectionvalue(String unitid,String date, String str);
+	List<String> queryinspectionvalue(String name,String value, String str);
+	List<String> querydate(String name, String date);
 }

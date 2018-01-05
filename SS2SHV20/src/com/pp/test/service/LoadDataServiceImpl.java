@@ -856,8 +856,12 @@ public class LoadDataServiceImpl extends BaseServiceImpl implements LoadDataServ
 			return this.sourcedao.query1name(name);
 		}
 
-		public String queryinspectionvalue(String unitid,String date, String str) {
+		public List<String> queryinspectionvalue(String unitid,String date, String str) {
 			return this.sourcedao.queryinspectionvalue(unitid,date,str);
 			
+		}
+
+		public List<String> querydate(String name, String date) {
+			return this.sourcedao.querydate(name,date);
 		}
 }

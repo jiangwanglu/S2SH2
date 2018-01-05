@@ -636,14 +636,28 @@ public class LoadDataAction  implements ServletRequestAware{
 	public String plantype(){
 		String name = request.getParameter("name");
 		String date = request.getParameter("date");
-		List<plantype>list = this.loadDataService.query1name(name);
-		for(plantype p : list){
-			String[]arr = p.getValue().split(",");
-			for(String str : arr){
-				this.loadDataService.queryinspectionvalue(p.getUnitid(),date,str);
-			}
+		List<String> list = this.loadDataService.querydate(name,date);
+		result = JSONArray.fromObject(list).toString();
+	/*	String[]val = value.split(",");
+		List<String> list = new ArrayList<String>();
+		for(int i=0;i<val.length;i++){
+			System.out.println(this.loadDataService.queryinspectionvalue(name,date,val[i]));
+		}*/
+		/*result = JSONArray.fromObject(list).toString();*/
+		return "load_success";
+	}
+	
+	public String plantype1(){
+		String value=request.getParameter("value");
+		String name = request.getParameter("name");
+		String date = request.getParameter("date");
+		String[] val = value.split(",");
+		List<String> list = new ArrayList<String>();
+		for(int i=0;i<val.length;i++){
+			System.out.println(name+"---"+date+"----"+val[i]);
+		//	list.addAll(this.loadDataService.queryinspectionvalue(name, date, val[i]));
 		}
-		
+		result = JSONArray.fromObject(list).toString();
 		return "load_success";
 	}
 }
