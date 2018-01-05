@@ -141,7 +141,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					for(var i=0;i<arrParse.length;i++){
 						$("#ke").append("<tr><td>"+arrParse[i]+"</td></tr>");
 						for(var j=0;j<data.length;j++){
-							$.ajax({
+							alert(arrParse[i]);
+							/* $.ajax({
 								type:"post",
 								url:"plantype1dl.do",
 								data:{value:data[j].value,name:data[j].unitid,date:arrParse[i]},
@@ -149,7 +150,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								success:function(de){
 									alert(de);
 								}
-							});
+							}); */
 						} 
 					}
 				}

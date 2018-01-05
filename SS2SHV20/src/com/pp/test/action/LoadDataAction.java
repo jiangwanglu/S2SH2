@@ -651,13 +651,13 @@ public class LoadDataAction  implements ServletRequestAware{
 		String value=request.getParameter("value");
 		String name = request.getParameter("name");
 		String date = request.getParameter("date");
-		String[] val = value.split(",");
-		List<String> list = new ArrayList<String>();
-		for(int i=0;i<val.length;i++){
-			System.out.println(name+"---"+date+"----"+val[i]);
+/*		String[] val = value.split(",");
+		List<String> list = new ArrayList<String>();*/
+		System.out.println(name+"---"+date+"----"+value);
+		/*for(int i=0;i<val.length;i++){
 		//	list.addAll(this.loadDataService.queryinspectionvalue(name, date, val[i]));
-		}
-		result = JSONArray.fromObject(list).toString();
+		}*/
+	//	result = JSONArray.fromObject(list).toString();
 		return "load_success";
 	}
 }
