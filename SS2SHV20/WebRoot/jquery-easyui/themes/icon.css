@@ -67,6 +67,18 @@
 .icon-more{
 	background:url('icons/more.png') no-repeat center center;
 }
+.icon-kt{
+	background:url('icons/kt.png') no-repeat center center;
+}
+.icon-gpd{
+	background:url('icons/gpd.png') no-repeat center center;
+}
+.icon-gps{
+	background:url('icons/gps.png') no-repeat center center;
+}
+.icon-xz{
+	background:url('icons/xz.png') no-repeat center center;
+}
 
 
 .icon-mini-add{

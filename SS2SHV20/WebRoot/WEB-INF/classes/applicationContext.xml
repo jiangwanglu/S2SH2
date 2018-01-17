@@ -69,6 +69,7 @@
 				<value>com/pp/test/bo/planned.hbm.xml</value>
 				<value>com/pp/test/bo/PatrolRecord.hbm.xml</value>
 				<value>com/pp/test/bo/plantype.hbm.xml</value>
+				<value>com/pp/test/bo/planre.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -174,6 +175,7 @@
 		<property name="maintenancedao" ref="maintenancedao" />
 		<property name="planneddao" ref="planneddao" />
 		<property name="patrolrecorddao" ref="patrolrecorddao" />
+		<property name="planredao" ref="planredao" />
 	</bean>
 	<bean id="loadDataActionBean" 
 		class="com.pp.test.action.LoadDataAction">
@@ -196,6 +198,7 @@
     <bean id="maintenancedao" class="com.pp.test.dao.MaintenanceDaoImpl" parent="baseDao" />
     <bean id="planneddao" class="com.pp.test.dao.plannedDaoImpl" parent="baseDao"/>
     <bean id="patrolrecorddao" class="com.pp.test.dao.PatrolRecordDaoImpl" parent="baseDao"/>
+	<bean id="planredao" class="com.pp.test.dao.planreDaoImpl" parent="baseDao"/>
 
 
 	

@@ -97,6 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 	});
 	function equipment(i,name){
+		var va = i.name;
 		$("#ke").empty();
 		$("#plantype").empty();
 		$("#biaoti").empty();
@@ -120,42 +121,64 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						$("#ke").append("<th>巡检人</tr>");
 					}
 				}
-				tabletr(msg);
+				tabletd(msg,va);
 			},});
 		}
 	}
-	
-	function tabletr(data){
+	function tabletr(data,msg1){
+		var msg = eval("("+msg1+")");
 		var star = document.getElementById("test1").value;
 		if(star == ""){
-			alert("请先选择日期!!!");
+			alert("  ");
 		}else{
 			$.ajax({
 				type:"post",
 				url:"plantypedl.do",
 				data:{name:data[0].name,date:star},
 				dataType:"Json",
-				success:function(da){
-					var arrParse = JSON.parse(da);
+				success:function(da){	
+					alert(da);
+ 					var arrParse = JSON.parse(da);
 					da = da.split(",");
 					for(var i=0;i<arrParse.length;i++){
-						$("#ke").append("<tr><td>"+arrParse[i]+"</td></tr>");
-						for(var j=0;j<data.length;j++){
-							alert(arrParse[i]);
-							/* $.ajax({
-								type:"post",
-								url:"plantype1dl.do",
-								data:{value:data[j].value,name:data[j].unitid,date:arrParse[i]},
-								dataType:"Json",
-								success:function(de){
-									alert(de);
+						var ll = ("<tr><td>"+arrParse[i]+"</td>");
+						 $("#ke").append("<tr><td>"+arrParse[i]+"</td>"); 
+						/*  for(var j=1;j<$('#s th').size() - 1;j++){
+							alert($('#s th').size() - 1);
+							// $('#s  th:eq(j)').html(); 
+							for(var a=0;a<data.length;a++){
+								for(var s=0;s<data[a].valuename.split(",").length;s++){
+									for(var f=0;f<msg.length;f++){
+										if(arrParse[i] == (msg[f].b) && data[a].unitid == (msg[f].id)){
+											alert(data[a].value.split(",")[s]);
+											// $("#ke").append(ll+"<td>"+msg[f].data[a].value.split(",")[s]+"</td></tr>"); 
+										}
+									}
 								}
-							}); */
-						} 
-					}
+							}
+						}  */
+					} 
 				}
-			}); 
+			});
 		}
+	}
+	
+	function tabletf(){
+		
+	}
+	
+	function tabletd(msg,name){
+		alert(msg);
+		var star = document.getElementById("test1").value;
+		$.ajax({
+			type:"post",
+			url:"plantype1dl.do",
+			data:{data:star,name:name},
+			dataType:"Json",
+			success:function(de){
+				tabletr(msg,de);
+			}
+		}); 
 	}
 </script>
 </html>

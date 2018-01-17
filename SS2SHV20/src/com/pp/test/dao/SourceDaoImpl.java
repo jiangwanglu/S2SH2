@@ -82,12 +82,11 @@ public class SourceDaoImpl extends BaseDaoImpl<Source,Integer> implements Source
 		return null;
 	}
 	//设备名，日期，属性名
-	public List<String> queryinspectionvalue(String unitid,String date, String str) {
-		String sql = "select "+str+" from  inspection where id = ? and b = ? ";
+	public List<Inspection> queryinspectionvalue(String unitid,String name) {
+		String sql = "from Inspection where d = ? and id LIKE '"+name+"%'";
 		try {
-			return (List<String>) this.queryForList(sql,new String[]{unitid,date},String.class);
+			return (List<Inspection>)this.find(sql, new String[]{unitid});
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

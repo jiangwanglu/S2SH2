@@ -20,4 +20,7 @@ public interface PrintDao {
 	List<String> Patrol(String date1, String date2,String gpd,String jlg,String fdj) throws Exception;
 
 	void addPlanned(Inspection ti);
+
+	//动态生成(查询所有设备)
+	List<String> plann(String data,String name) throws Exception;
 }

@@ -36,6 +36,7 @@ import com.pp.test.dao.SourceDao;
 import com.pp.test.dao.WaterPumpDao;
 import com.pp.test.dao.WeeklyDao;
 import com.pp.test.dao.plannedDao;
+import com.pp.test.dao.planreDao;
 public class LoadDataServiceImpl extends BaseServiceImpl implements LoadDataService{               
 	
 	private PrintDao printdao;
@@ -66,6 +67,17 @@ public class LoadDataServiceImpl extends BaseServiceImpl implements LoadDataServ
 	
 	private PatrolRecordDao patrolrecorddao;
 	
+	//动态生成(目录)
+	private planreDao planredao;
+	
+	public planreDao getPlanredao() {
+		return planredao;
+	}
+
+	public void setPlanredao(planreDao planredao) {
+		this.planredao = planredao;
+	}
+
 	public MaintenanceDao getMaintenancedao() {
 		return maintenancedao;
 	}
@@ -856,12 +868,22 @@ public class LoadDataServiceImpl extends BaseServiceImpl implements LoadDataServ
 			return this.sourcedao.query1name(name);
 		}
 
-		public List<String> queryinspectionvalue(String unitid,String date, String str) {
-			return this.sourcedao.queryinspectionvalue(unitid,date,str);
+		public List<Inspection> queryinspectionvalue(String unitid,String name) {
+			return this.sourcedao.queryinspectionvalue(unitid,name);
 			
 		}
 
 		public List<String> querydate(String name, String date) {
 			return this.sourcedao.querydate(name,date);
+		}
+
+		
+		//动态生成(查询目录)
+		public String queryCatalog(String name) {
+			return this.planredao.queryCatalog(name);
+		}
+		//动态生成(查询所有设备)
+		public List<String> plann(String data,String name) throws Exception {
+			return this.printdao.plann(data,name);
 		}
 }

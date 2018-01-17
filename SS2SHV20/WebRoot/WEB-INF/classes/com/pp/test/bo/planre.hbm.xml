@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                 "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+        
+<hibernate-mapping>
+	<class name="com.pp.test.bo.planre" table="planre">
+		<id name="id" column="java.lang.Integer" >
+			<generator class="native"/>
+		</id>
+		<property name="name" />
+		<property name="value" />
+	</class>
+</hibernate-mapping>

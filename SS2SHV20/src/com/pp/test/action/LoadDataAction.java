@@ -90,7 +90,7 @@ public class LoadDataAction  implements ServletRequestAware{
 				loadDataService.Folder(date1,list,i);
 				i++;
 			}
-		}
+		}	
 		//空调
 		public void AirConditioner() throws Exception{
 			List<Inspection>list = new ArrayList<Inspection>();
@@ -171,7 +171,7 @@ public class LoadDataAction  implements ServletRequestAware{
 		     Date today = new Date(); 
 		     Calendar c = Calendar.getInstance();  
 		     c.setTime(today);  
-		     c.add(Calendar.DAY_OF_MONTH, 1);// 今天+1天  
+		     c.add(Calendar.DAY_OF_MONTH, 0);// 今天+1天  
 		     Date tomorrow = c.getTime();  
 			List<planned> list1 = this.loadDataService.queryPlanned();
 			for(planned l : list1){
@@ -648,16 +648,33 @@ public class LoadDataAction  implements ServletRequestAware{
 	}
 	
 	public String plantype1(){
-		String value=request.getParameter("value");
+		String date = request.getParameter("data");
+		String name = request.getParameter("name");	
+		List<Inspection> list = this.loadDataService.queryinspectionvalue(date,name);
+		result = JSONArray.fromObject(list).toString();
+		return "load_success";
+	}
+	
+	
+	//动态生成(查询设备)
+	public String plann() throws Exception{
+		String date = request.getParameter("data");
 		String name = request.getParameter("name");
-		String date = request.getParameter("date");
-/*		String[] val = value.split(",");
-		List<String> list = new ArrayList<String>();*/
-		System.out.println(name+"---"+date+"----"+value);
-		/*for(int i=0;i<val.length;i++){
-		//	list.addAll(this.loadDataService.queryinspectionvalue(name, date, val[i]));
-		}*/
-	//	result = JSONArray.fromObject(list).toString();
+		List<String> list = this.loadDataService.plann(date,name);
+		result = JSONArray.fromObject(list).toString();
+		return "load_success";
+	}
+	
+	//动态生成(查询目录)
+	public String plana(){
+		String name = request.getParameter("name");
+		String value = this.loadDataService.queryCatalog(name);
+		result = value.toString();
+		return "load_success";
+	}
+	public String generatehtml(){
+		String name = request.getParameter("planname");
+		System.out.println(name);
 		return "load_success";
 	}
 }

@@ -28,4 +28,10 @@ public class PrintDaoImpl extends BaseDaoImpl<Inspection,Integer> implements Pri
 			e.printStackTrace();
 		}
 	}
+
+	
+	public List<String> plann(String data,String name) throws Exception {
+		String sql = "select name from inspection where d = ? and id LIKE '"+name+"%' group by name" ;
+		return (List<String>) this.queryForList(sql,new String[]{data},String.class);
+	}
 }

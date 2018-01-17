@@ -119,6 +119,12 @@ public interface LoadDataService {
 	List<String> query2Type(String name);
 	//查询
 	List<plantype> query1name(String name);
-	List<String> queryinspectionvalue(String name,String value, String str);
+	List<Inspection> queryinspectionvalue(String name,String name1);
 	List<String> querydate(String name, String date);
+	
+	
+	//动态生成(查询目录)
+	String queryCatalog(String name);
+	//动态生成(查询所有设备)
+	List<String> plann(String data,String name) throws Exception;
 }

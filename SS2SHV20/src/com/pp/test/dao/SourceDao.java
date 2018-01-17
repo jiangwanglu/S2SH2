@@ -2,6 +2,7 @@ package com.pp.test.dao;
 
 import java.util.List;
 
+import com.pp.test.bo.Inspection;
 import com.pp.test.bo.Source;
 import com.pp.test.bo.plantype;
 
@@ -20,6 +21,6 @@ public interface SourceDao {
 	List<plantype> query1name(String name);
 	
 
-	List<String> queryinspectionvalue(String unitid, String date, String str);
+	List<Inspection> queryinspectionvalue(String unitid,String name);
 	List<String> querydate(String name, String date);
 }
